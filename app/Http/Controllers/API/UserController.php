@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response()->json(User::with(['orders'])->get());
+        return response()->json(User::all());
     }
 
     /**
@@ -25,12 +25,12 @@ class UserController extends Controller
      */
     public function login(Request $request){
         $status = 401;
-        $response = ['error' => 'Unauthorised'];
+        $response = ['error' => 'Unauthorised, Invalid credentials'];
         if(Auth::attempt($request->only(['email','password']))){
             $status = 200;
             $response = [
                 'user'=>Auth::user(),
-                'token'=>Auth::user()->createToken('bigStore')->accessToken
+                'token'=>Auth::user()->createToken('test')->accessToken
             ];
         }
         return response()->json($response,$status);
@@ -39,7 +39,7 @@ class UserController extends Controller
     public function register(Request $request){
         $validator = Validator::make($request->all(),[
             'name' => 'required|max:50',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
             'c_password' => 'required|same:password',
         ]);
@@ -49,11 +49,11 @@ class UserController extends Controller
         $data = $request->only(['name','email','password']);
         $data['password'] = bcrypt($data['password']);
         $user = User::create($data);
-        \Illuminate\Support\Facades\Log::info($user);
+        //\Illuminate\Support\Facades\Log::info($user);
         $user->is_admin = 0;
         return response()->json([
             'user'=>$user,
-            'token'=> $user->createToken('bigStore')->accessToken
+            'token'=> $user->createToken('test')->accessToken
         ]);
     }
 

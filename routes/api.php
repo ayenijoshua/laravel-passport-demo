@@ -19,9 +19,9 @@ use Illuminate\Http\Request;
 
 Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@register');
-Route::get('/products', 'API\ProductController@index');
-Route::post('/upload-file', 'API\ProductController@uploadFile');
-Route::get('/products/{product}', 'API\ProductController@show');
+// Route::get('/products', 'API\ProductController@index');
+// Route::post('/upload-file', 'API\ProductController@uploadFile');
+// Route::get('/products/{product}', 'API\ProductController@show');
 
 Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/users','API\UserController@index');
