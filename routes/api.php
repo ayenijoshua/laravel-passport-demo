@@ -17,19 +17,9 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
+//login endpoint
 Route::post('login', 'API\UserController@login');
+//register endpoint
 Route::post('register', 'API\UserController@register');
-// Route::get('/products', 'API\ProductController@index');
-// Route::post('/upload-file', 'API\ProductController@uploadFile');
-// Route::get('/products/{product}', 'API\ProductController@show');
-
-Route::group(['middleware' => 'auth:api'], function(){
-    Route::get('/users','API\UserController@index');
-    Route::get('users/{user}','API\UserController@show');
-    Route::patch('users/{user}','API\UserController@update');
-    Route::get('users/{user}/orders','API\UserController@showOrders');
-    Route::patch('products/{product}/units/add','API\ProductController@updateUnits');
-    Route::patch('orders/{order}/deliver','API\OrderController@deliverOrder');
-    Route::resource('/orders', 'API\OrderController');
-    Route::resource('/products', 'API\ProductController')->except(['index','show']);
-});
+//list of users endpoint
+Route::get('/products', 'API\UserController@index');
