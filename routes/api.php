@@ -22,4 +22,4 @@ Route::post('login', 'API\UserController@login');
 //register endpoint
 Route::post('register', 'API\UserController@register');
 //list of users endpoint
-Route::get('/products', 'API\UserController@index');
+Route::get('/users', 'API\UserController@index');
