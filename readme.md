@@ -3,9 +3,9 @@
 
 ## About 
 
-This is a Laravel passport based authentication (Using SQlite for database) that exposes login,register endpoints. Please relpace <port> with your port number
+This is a Laravel passport based authentication (Using SQlite for database) that exposes login,register endpoints. Please relpace <8000> with your port number
 The endpoint access points are desccribed below:
 
-- http://localhost:<port>/api/register - Register endpoint
-- http://localhost:<port>/api/login - Login endpoint
-- http://localhost:<port>/api/users - users endpoint
+- http://localhost:8000/api/register - Register endpoint
+- http://localhost:8000/api/login - Login endpoint
+- http://localhost:8000/api/users - users endpoint
