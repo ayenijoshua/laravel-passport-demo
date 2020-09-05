@@ -33,8 +33,8 @@ class UserTest extends TestCase
 
         $response
             ->assertStatus(201)
-            ->assertExactJson([
-                'message' => "Successfully created user!",
+            ->assertJson([
+                "message" => "Successfully created user!",
             ]);
     }//testUserCreation
 }
