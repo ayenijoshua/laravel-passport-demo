@@ -53,8 +53,9 @@ class UserController extends Controller
         $user->is_admin = 0;
         return response()->json([
             'user'=>$user,
-            'token'=> $user->createToken('test')->accessToken
-        ]);
+            'token'=> $user->createToken('test')->accessToken,
+            'message'=>'Successfully created user!'
+        ],201);
     }
 
     /**
