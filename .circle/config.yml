@@ -1,0 +1,41 @@
+version : 2
+jobs: 
+  build:
+    docker:
+      - image: circleci/php:7.1-node-browsers #circle-ci docker image from docker registery
+    working-directory: ~/laravel
+    steps:
+      - checkout: #checkout codebase from github
+      - run: sudo apt install -y libsqlite3-dev zlib1g-dev #install sqlite
+      - run: sudo docker-php-ext-install zip #install php extensions
+      - run: sudo composer self-update #composer update project dependencies
+      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
+          keys: 
+            - composer-v1-{{ checksum "composer.lock" }} 
+            - composer-v1- #fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/2.0/caching/)
+      - run: composer install -n --prefer-dist
+      - save_cache: # special step to save the dependency cache with the `composer.lock` cache key template
+          key: composer-v1-{{ checksum "composer.lock" }}
+          paths:
+            - ./vendor
+      # - restore_cache: # special step to restore the dependency cache if `package-lock.json` does not change
+      #     keys:
+      #       - node-v1-{{ checksum "package.json" }}
+      #       - node-v1-
+      # - run: yarn install
+      # - save_cache: # special step to save the dependency cache with the `package-lock.json` cache key template
+      #     key: node-v1-{{ checksum "package.json" }}
+      #     paths:
+      #      - node_modules
+      - run:
+          name: "Create Envionment variable and generate app key"
+          command: |
+            sudo mv .env.testing .env
+            sudo php artisan key:generate
+      - run:  
+          name: "Create database and run migration"
+          command: |
+            sudo touch database/test-db.sqlite
+            sudo php artisan migrate --env=testing
+      - run: sudo php artisan passport:install #generate passport encryption keys
+      - run: ./vendor/bin/phpunit
