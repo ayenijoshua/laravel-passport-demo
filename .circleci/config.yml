@@ -30,7 +30,7 @@ jobs:
       - run:
           name: "Create Envionment variable and generate app key"
           command: |
-            sudo mv .env.testing .env
+            sudo mv .env.example .env
             sudo php artisan key:generate
       - run:  
           name: "Create database and run migration"
