@@ -39,3 +39,7 @@ jobs:
             sudo php artisan migrate --env=testing
       - run: sudo php artisan passport:install --env=testing #generate passport encryption keys
       - run: ./vendor/bin/phpunit
+      - run: cp ./storage/laravel.log error.log
+      - store_artifacts:
+          path: ./error.log
+      - run: rm ./storage/laravel.log
