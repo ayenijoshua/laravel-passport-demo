@@ -41,5 +41,5 @@ jobs:
       - run: ./vendor/bin/phpunit
       - run: cp ./storage/laravel.log error.log
       - store_artifacts:
-          path: ./error.log
+          path: error.log
       - run: rm ./storage/laravel.log
