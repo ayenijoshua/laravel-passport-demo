@@ -9,7 +9,7 @@ jobs:
       #- run: sudo apt install -y libsqlite3-dev zlib1g-dev #install sqlite
       - run: 
           command: |
-            sudo chown -R :www-data ./laravel
+            sudo chown -R :www-data ~/project/laravel
             sudo chmod -R 775 ./storage
       - run: 
           command: |
