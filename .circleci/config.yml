@@ -6,8 +6,11 @@ jobs:
     working-directory: ~/laravel
     steps:
       - checkout: #checkout codebase from github
-      - run: sudo apt install -y libsqlite3-dev zlib1g-dev #install sqlite
-      - run: sudo docker-php-ext-install zip #install php extensions
+      #- run: sudo apt install -y libsqlite3-dev zlib1g-dev #install sqlite
+      - run: 
+          command: |
+            sudo apt update
+            sudo docker-php-ext-install zip #install php extensions
       - run: sudo composer self-update #composer update project dependencies
       - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
           keys: 
