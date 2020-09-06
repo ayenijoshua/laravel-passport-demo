@@ -10,7 +10,7 @@ jobs:
       - run: 
           command: |
             sudo chown -R :www-data ~/project
-            sudo chmod -R 775 ./storage
+            sudo chmod -R 775 ./database
       - run: 
           command: |
             sudo apt update
