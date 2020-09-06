@@ -10,6 +10,7 @@ jobs:
       - run: 
           command: |
             sudo chown -R :www-data ~/project
+            sudo chgrp -R :www-data ~/project
             sudo chmod -R 777 ~/project/database
       - run: 
           command: |
