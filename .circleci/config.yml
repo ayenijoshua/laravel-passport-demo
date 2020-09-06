@@ -10,8 +10,8 @@ jobs:
       - run: 
           command: |
             sudo chown -R :www-data ~/project
-            sudo chgrp -R :www-data ~/project
-            sudo chmod -R 777 ~/project/database
+            sudo chgrp -R www-data ~/project
+            sudo chmod -R 775 ~/project/database
       - run: 
           command: |
             sudo apt update
