@@ -45,7 +45,7 @@ jobs:
           name: "Create database and run migration"
           command: |
             sudo touch database/test-db.sqlite
-            sudo chmod -R 775 ~/project/database/test-db.sqlite
+            sudo chmod 777 ./database/test-db.sqlite
             sudo php artisan migrate --env=testing
       - run: sudo php artisan passport:install --env=testing #generate passport encryption keys
       - run: ./vendor/bin/phpunit
