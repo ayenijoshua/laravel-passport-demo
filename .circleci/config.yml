@@ -9,10 +9,10 @@ jobs:
       #- run: sudo apt install -y libsqlite3-dev zlib1g-dev #install sqlite
       - run: 
           command: |
-            sudo chown -R www-data ~/project
-            sudo chgrp -R www-data ~/project
-            sudo chown -R $(whoami) ~/project/database
-            sudo chmod -R 775 ~/project/database
+            sudo chown -R www-data ~/project .
+            sudo chgrp -R www-data ~/project .
+            sudo chown -R $(whoami) ~/project/database .
+            sudo chmod -R 775 ~/project/database .
       - run: 
           command: |
             sudo apt update
